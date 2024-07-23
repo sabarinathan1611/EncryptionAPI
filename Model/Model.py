@@ -1,20 +1,16 @@
-from enum import Enum
-from pydantic import BaseModel, ValidationError, validator
-from typing import Optional
+from pydantic import BaseModel
 
-class Admin():
-	def currentuser():
-		login = True
-		return login
+class Token(BaseModel):
+    access_token:str
+    token_type:str
 
-class Account(BaseModel):
-    name: Optional[str]
-    id: int
-    email: str
+class TokenData(BaseModel):
+    username:str or None =None
+    
+class User(BaseModel):
+    username:str or None =None
+    email:str or None =None 
+    disable:bool or None = None 
 
-    @validator('email')
-    def email_validation(cls, value):
-        if '@' not in value:
-            raise ValueError("Invalid Email Address")
-        return value
-
+class UserInDB(User):
+    hash_password:str
