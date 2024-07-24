@@ -25,5 +25,6 @@ async def read_user_items(current_user:User=Depends(get_current_active_user)):
     return [{"item_id":1,"owner":current_user}]
 
 
+    
 
     
